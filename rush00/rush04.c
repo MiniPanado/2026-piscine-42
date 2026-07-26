@@ -21,14 +21,14 @@ void	ft_print_line(int nums_columns, char left, char mid, char right)
 {
 	int	column;
 
-	column = 1;
-	while (column <= nums_columns)
+	column = 0;
+	while (column < nums_columns)
 	{
-		if (column == 1)
+		if (column == 0)
 		{
 			ft_putchar(left);
 		}
-		else if (column == nums_columns)
+		else if (column == (nums_columns - 1))
 		{
 			ft_putchar(right);
 		}
@@ -49,14 +49,14 @@ void	rush(int x, int y)
 	{
 		return ;
 	}
-	row = 1;
-	while (row <= y)
+	row = 0;
+	while (row < y)
 	{
-		if (row == 1)
+		if (row == 0)
 		{
 			ft_print_line(x, TOP, JUNGLE, BOTTOM);
 		}
-		else if (row == y)
+		else if (row == (y - 1))
 		{
 			ft_print_line(x, BOTTOM, JUNGLE, TOP);
 		}
