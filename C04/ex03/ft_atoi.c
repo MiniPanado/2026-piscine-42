@@ -1,7 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/30 01:38:11 by lucerque          #+#    #+#             */
+/*   Updated: 2026/07/30 01:49:20 by lucerque         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdbool.h>
 
 // 9  == '\t'
 // 13 == '\r'
+
+#define INT_MIN_NUMBER 2147483648
+#define INT_MAX_NUMBER 2147483647
 
 static bool	ft_is_space(char c)
 {
@@ -11,38 +26,35 @@ static bool	ft_is_space(char c)
 int	ft_atoi(char *str)
 {
 	unsigned int	i;
-	short			signal;
+	int				sign;
 	unsigned int	res;
 
+	if (!str)
+		return (0);
 	i = 0;
 	while (ft_is_space(str[i]))
-	{
 		i++;
-	}
-	signal = 1;
+	sign = 1;
 	while (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-		{
-			signal = -signal;
-		}
-		i++;
-	}
+		if (str[i++] == '-')
+			sign = -sign;
 	res = 0;
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		res = res * 10 + str[i] - '0';
-		i++;
-	}
-	return (res * signal);
+	while (str[i] >= '0' && str[i] <= '9' && res < INT_MAX_NUMBER)
+		res = res * 10 + str[i++] - '0';
+	if ((sign == -1 && res <= INT_MIN_NUMBER)
+		|| (sign == 1 && res <= INT_MAX_NUMBER))
+		return (res * sign);
+	return (0);
 }
 
 /*#include <stdio.h>
 int	main(int argc, char **argv)
 {
-	if (argc != 2)
+	if (argc < 2)
 		return (1);
 	argv++;
-	printf("%d\n", ft_atoi(*argv));
+	argc--;
+	for (int i = 0; i < argc; i++)
+		printf("%d\n", ft_atoi(argv[i]));
 	return (0);
 }*/

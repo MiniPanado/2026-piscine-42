@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/30 01:37:05 by lucerque          #+#    #+#             */
+/*   Updated: 2026/07/30 01:37:37 by lucerque         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 
 // -(unsigned int)nb is equal to (2^32 - nb) % 2^32
@@ -9,7 +21,7 @@ void	ft_putnbr(int nb)
 	if (nb < 0)
 	{
 		write(1, "-", 1);
-		number = (-(unsigned int)nb);
+		number = -(unsigned int)nb;
 	}
 	else
 	{

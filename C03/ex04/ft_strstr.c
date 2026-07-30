@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/30 01:15:55 by lucerque          #+#    #+#             */
+/*   Updated: 2026/07/30 01:35:49 by lucerque         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 static unsigned int	ft_strlen(char *str)
 {
 	unsigned int	i;
@@ -31,28 +43,3 @@ char	*ft_strstr(char *str, char *to_find)
 	}
 	return ((char *)0);
 }
-
-/*#include <stdio.h>
-
-int main(void)
-{
-    char str[] = "Hello, world!";
-    char *res;
-
-    res = ft_strstr(str, "world");
-    printf("Procurar \"world\": %s\n", res ? res : "NULL");
-
-    res = ft_strstr(str, "Hello");
-    printf("Procurar \"Hello\": %s\n", res ? res : "NULL");
-
-    res = ft_strstr(str, "!");
-    printf("Procurar \"!\": %s\n", res ? res : "NULL");
-
-    res = ft_strstr(str, "abc");
-    printf("Procurar \"abc\": %s\n", res ? res : "NULL");
-
-    res = ft_strstr(str, "");
-    printf("Procurar \"\": %s\n", res ? res : "NULL");
-
-    return (0);
-}*/

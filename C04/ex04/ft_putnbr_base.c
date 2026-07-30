@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/30 01:54:01 by lucerque          #+#    #+#             */
+/*   Updated: 2026/07/30 02:13:19 by lucerque         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 #include <stdbool.h>
 
@@ -28,7 +40,8 @@ static bool	ft_base_is_valid(char *base)
 	i = 0;
 	while (base[i] != '\0')
 	{
-		if (base[i] == '+' || base[i] == '-')
+		if (base[i] == '+' || base[i] == '-'
+			|| (base[i] < ' ' || base[i] > '~'))
 			return (false);
 		if (++freq[(unsigned char)base[i]] > 1)
 			return (false);
@@ -53,7 +66,7 @@ void	ft_putnbr_base(int nbr, char *base)
 {
 	unsigned int	number;
 
-	if (!ft_base_is_valid(base))
+	if (!base || !ft_base_is_valid(base))
 	{
 		return ;
 	}
