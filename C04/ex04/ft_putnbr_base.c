@@ -6,7 +6,7 @@
 /*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/30 01:54:01 by lucerque          #+#    #+#             */
-/*   Updated: 2026/07/30 02:13:19 by lucerque         ###   ########.fr       */
+/*   Updated: 2026/07/31 01:31:08 by lucerque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static bool	ft_base_is_valid(char *base)
 	int		i;
 	short	freq[ASCII_SIZE];
 
-	if (!base || *base == '\0' || base[1] == '\0')
+	if (*base == '\0' || base[1] == '\0')
 		return (false);
 	i = 0;
 	while (i < ASCII_SIZE)
@@ -40,8 +40,7 @@ static bool	ft_base_is_valid(char *base)
 	i = 0;
 	while (base[i] != '\0')
 	{
-		if (base[i] == '+' || base[i] == '-'
-			|| (base[i] < ' ' || base[i] > '~'))
+		if (base[i] == '+' || base[i] == '-')
 			return (false);
 		if (++freq[(unsigned char)base[i]] > 1)
 			return (false);

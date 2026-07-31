@@ -6,17 +6,13 @@
 /*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/30 01:38:11 by lucerque          #+#    #+#             */
-/*   Updated: 2026/07/30 01:49:20 by lucerque         ###   ########.fr       */
+/*   Updated: 2026/07/31 01:12:00 by lucerque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 
-// 9  == '\t'
-// 13 == '\r'
-
-#define INT_MIN_NUMBER 2147483648
-#define INT_MAX_NUMBER 2147483647
+// 9  == '\t' && 13 == '\r'
 
 static bool	ft_is_space(char c)
 {
@@ -25,9 +21,9 @@ static bool	ft_is_space(char c)
 
 int	ft_atoi(char *str)
 {
-	unsigned int	i;
-	int				sign;
-	unsigned int	res;
+	int	i;
+	int	sign;
+	int	res;
 
 	if (!str)
 		return (0);
@@ -39,13 +35,20 @@ int	ft_atoi(char *str)
 		if (str[i++] == '-')
 			sign = -sign;
 	res = 0;
-	while (str[i] >= '0' && str[i] <= '9' && res < INT_MAX_NUMBER)
-		res = res * 10 + str[i++] - '0';
-	if ((sign == -1 && res <= INT_MIN_NUMBER)
-		|| (sign == 1 && res <= INT_MAX_NUMBER))
-		return (res * sign);
-	return (0);
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		res = res * 10 + (str[i++] - '0');
+	}
+	return (res * sign);
 }
+
+//A way to handle overflow and underflow
+/*#define INT_MIN_NUMBER 2147483648
+#define INT_MAX_NUMBER 2147483647
+
+if ((sign == -1 && res <= INT_MIN_NUMBER)
+	|| (sign == 1 && res <= INT_MAX_NUMBER))
+	return (res * sign);*/
 
 /*#include <stdio.h>
 int	main(int argc, char **argv)
