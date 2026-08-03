@@ -1,10 +1,11 @@
-#define QUAD_RESIDUES_MOD16 531
+/*#define QUAD_RESIDUES_MOD16 531
+!((QUAD_RESIDUES_MOD16 >> (nb & 0xF)) & 1)*/
 
 int	ft_sqrt(int nb)
 {
 	int	i;
 
-	if (nb < 0 || !((QUAD_RESIDUES_MOD16 >> (nb & 0xF)) & 1))
+	if (nb < 0)
 	{
 		return (0);
 	}
@@ -15,11 +16,9 @@ int	ft_sqrt(int nb)
 	i = 2;
 	while (i < nb / i)
 	{
-		if (i * i == nb)
-		{
-			return (i);
-		}
 		i++;
 	}
+	if (i * i == nb)
+		return (i);
 	return (0);
 }
