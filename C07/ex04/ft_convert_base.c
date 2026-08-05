@@ -1,7 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_convert_base.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/05 19:44:14 by lucerque          #+#    #+#             */
+/*   Updated: 2026/08/05 20:30:51 by lucerque         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include <stdbool.h>
+#include <limits.h>
 
 #define ASCII_SIZE 256
+
+size_t	ft_strlen(char *str);
+char	*ft_itoa_base(int num, char *str, const char *base, size_t base_len);
 
 static bool	is_space(char c)
 {
@@ -53,43 +69,76 @@ static short	lookup_inic(short *lookup, const char *base)
 	return (i);
 }
 
-static int	ft_atoi_base(const char *str, const char *base, short *sign)
+static int	ft_atoi_base(const char *str, const char *base)
 {
 	size_t	i;
+	short	sign;
 	int		res;
 	short	lookup[ASCII_SIZE];
 	short	base_len;
 
-	if (!str || is_base_valid(base))
+	if (!str || is_base_valid(base) == false)
 		return (0);
 	i = 0;
 	while (is_space(*(str + i)))
 		i++;
-	*sign = 1;
+	sign = 1;
 	while (*(str + i) == '-' || *(str + i) == '+')
 	{
 		if (*(str + i) == '-')
 		{
-			*sign = -*sign;
+			sign = -sign;
 		}
 		i++;
 	}
 	base_len = lookup_inic(lookup, base);
-	while (lookup[(unsigned char)base[i]] != -1)
-		res = res * base_len + lookup[(unsigned char)base[i++]];
-	return (res * *sign);
+	res = 0;
+	while (lookup[(unsigned char)str[i]] != -1)
+		res = res * base_len + lookup[(unsigned char)str[i++]];
+	return (res * sign);
 }
 
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
-	short	sign;
+	size_t	i;
 	int		number;
+	char	buffer[CHAR_BIT * sizeof(int) + 2];
 	char	*str;
 
 	if (!nbr || !is_base_valid(base_from) || !is_base_valid(base_to))
 	{
 		return (NULL);
 	}
-	number = ft_atoi_base(nbr, base_from, &sign);
-
+	number = ft_atoi_base(nbr, base_from);
+	ft_itoa_base(number, buffer, base_to, ft_strlen(base_to));
+	str = (char *)malloc((ft_strlen(buffer) + 1) * sizeof(char));
+	if (str == NULL)
+	{
+		return (NULL);
+	}
+	i = 0;
+	while (*(buffer + i))
+	{
+		*(str + i) = *(buffer + i);
+		i++;
+	}
+	*(str + i) = '\0';
+	return (str);
 }
+
+/*#include <stdio.h>
+
+int	main(int argc, char **argv)
+{
+	if (argc != 4)
+	{
+		printf("\n");
+		return (1);
+	}
+	char *str = ft_convert_base(argv[1], argv[2], argv[3]);
+	printf("Converted Base: %s\n", str);
+	free(str);
+
+}*/
+
+//valgrind --leak-check=full ./a.out -42 0123456789 01
