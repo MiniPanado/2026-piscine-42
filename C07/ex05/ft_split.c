@@ -6,9 +6,11 @@
 /*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 03:26:20 by lucerque          #+#    #+#             */
-/*   Updated: 2026/08/06 03:26:35 by lucerque         ###   ########.fr       */
+/*   Updated: 2026/08/06 03:33:22 by lucerque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+//MEMORY LEAK IN CASE OF MALLOC FAIL BECAUSE WE CAN'T USE FREE();
 
 #include <stdlib.h>
 #include <stdbool.h>

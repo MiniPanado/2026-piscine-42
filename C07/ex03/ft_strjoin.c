@@ -6,7 +6,7 @@
 /*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/04 20:23:04 by lucerque          #+#    #+#             */
-/*   Updated: 2026/08/06 01:53:23 by lucerque         ###   ########.fr       */
+/*   Updated: 2026/08/06 03:31:17 by lucerque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 	char	*ans;
 	size_t	total_size;
 
-	if (size <= 0 || strs == NULL || *strs == NULL || sep == NULL)
+	if (size <= 0 || strs == NULL || sep == NULL)
 	{
 		ans = (char *)malloc(1 * sizeof(char));
 		if (ans == NULL)
