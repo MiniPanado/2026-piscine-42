@@ -6,7 +6,7 @@
 /*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 04:54:27 by lucerque          #+#    #+#             */
-/*   Updated: 2026/08/07 01:29:34 by lucerque         ###   ########.fr       */
+/*   Updated: 2026/08/08 01:31:36 by lucerque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,13 @@ int	main(int argc, char **argv)
 		printf("You need to write at least one arguments!\n");
 		return (0);
 	}
+
 	t_stock_str *tab = ft_strs_to_tab(argc - 1, argv + 1);
+	if (tab == NULL)
+	{
+		return (1);
+	}
+
 	for (int i = 0; i <= argc - 1; i++)
 	{
 		printf("----------------------------------------------------\n");
@@ -97,6 +103,9 @@ int	main(int argc, char **argv)
 		printf("tab[%d].str: %s\n", i, tab[i].str);
 		printf("tab[%d].copy: %s\n", i, tab[i].copy);
 		printf("----------------------------------------------------\n");
+		
+		free(tab[i].copy);
 	}
+	free(tab);
 	return (0);
 }*/
