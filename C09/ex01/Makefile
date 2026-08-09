@@ -1,15 +1,29 @@
+NAME = libft.a
+
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
+CPPFLAGS = -Iincludes
+AR = ar rc
 RM = rm -f
 
-SRC_DIR = srcs
-SRCS = $(addprefix $(SRC_DIR)/, ft_putchar.c ft_swap.c \
-	   ft_putstr.c ft_strlen.c ft_strcmp.c)
+SRCS_DIR = srcs
+SRC_NAMES = ft_putchar ft_swap ft_putstr ft_strlen ft_strcmp
+SRCS = $(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(SRC_NAMES)))
 
-OBJ = $(SRCS:.c=.o)
+OBJS = $(SRCS:.c=.o)
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(AR) $(NAME) $(OBJS)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 
 clean:
-	$(RM) $(OBJ)
+	$(RM) $(OBJS)
+
+fclean: clean
+	$(RM) $(NAME)
+
+re: fclean all
