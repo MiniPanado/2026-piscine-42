@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_error.c                                     :+:      :+:    :+:   */
+/*   ft_cat.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/09 02:09:41 by lucerque          #+#    #+#             */
-/*   Updated: 2026/08/10 10:54:01 by lucerque         ###   ########.fr       */
+/*   Created: 2026/08/09 02:35:34 by lucerque          #+#    #+#             */
+/*   Updated: 2026/08/10 01:43:44 by lucerque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_display_file.h"
+#ifndef FT_CAT_H
 
-int	ft_put_error(const char *error_msg)
-{
-	ssize_t	bytes_written;
-	size_t	len;
+# define FT_CAT_H
 
-	len = 0;
-	while (error_msg[len] != '\0')
-	{
-		len++;
-	}
-	bytes_written = write(STDERR_FILENO, error_msg, len);
-	if (bytes_written == -1)
-	{
-		return (EOF);
-	}
-	return (bytes_written);
-}
+# include <unistd.h>
+# include <fcntl.h>
+# include <errno.h>
+# include <libgen.h>
+# include <string.h>
+# include <stdbool.h>
+
+# define BUFFER_SIZE 1024
+
+size_t	ft_strlen(const char *str);
+bool	ft_cat(int fd);
+
+#endif

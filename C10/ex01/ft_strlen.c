@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_error.c                                     :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/09 02:09:41 by lucerque          #+#    #+#             */
-/*   Updated: 2026/08/10 10:54:01 by lucerque         ###   ########.fr       */
+/*   Created: 2026/08/09 04:57:47 by lucerque          #+#    #+#             */
+/*   Updated: 2026/08/10 01:38:12 by lucerque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_display_file.h"
+#include "ft_cat.h"
 
-int	ft_put_error(const char *error_msg)
+size_t	ft_strlen(const char *str)
 {
-	ssize_t	bytes_written;
-	size_t	len;
+	size_t	i;
 
-	len = 0;
-	while (error_msg[len] != '\0')
-	{
-		len++;
-	}
-	bytes_written = write(STDERR_FILENO, error_msg, len);
-	if (bytes_written == -1)
-	{
-		return (EOF);
-	}
-	return (bytes_written);
+	i = 0;
+	while (*(str + i))
+		i++;
+	return (i);
 }

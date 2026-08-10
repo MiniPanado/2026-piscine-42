@@ -6,7 +6,7 @@
 /*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 01:16:16 by lucerque          #+#    #+#             */
-/*   Updated: 2026/08/09 02:10:13 by lucerque         ###   ########.fr       */
+/*   Updated: 2026/08/10 10:53:19 by lucerque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 # define FT_DISPLAY_FILE_H
 
 # include <unistd.h>
+# include <stdio.h>
 # include <stdlib.h> 
 # include <stdbool.h>
 # include <fcntl.h>
 
-void	ft_put_error(char *str);
-bool	ft_display_file(char *file);
+int		ft_put_error(const char *str);
+bool	ft_display_file(int fd);
 
 # define BUFFER_SIZE 4096
 

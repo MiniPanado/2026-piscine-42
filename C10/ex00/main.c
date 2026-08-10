@@ -6,7 +6,7 @@
 /*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 02:09:33 by lucerque          #+#    #+#             */
-/*   Updated: 2026/08/09 02:09:34 by lucerque         ###   ########.fr       */
+/*   Updated: 2026/08/10 10:54:10 by lucerque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,23 @@
 
 int	main(int argc, char **argv)
 {
+	int	fd;
+
 	if (argc <= 1)
 	{
 		ft_put_error(NO_ARGUMENT_MSG);
-		return (1);
+		return (EXIT_FAILURE);
 	}
 	if (argc >= 3)
 	{
 		ft_put_error(MANY_ARGUMENT_MSG);
-		return (1);
+		return (EXIT_FAILURE);
 	}
-	if (ft_display_file(argv[1]) == false)
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1 || ft_display_file(argv[1] == false))
 	{
-		return (1);
+		ft_put_error(FILE_NOT_READ_MSG);
+		return (EXIT_FAILURE);
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }

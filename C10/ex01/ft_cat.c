@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_error.c                                     :+:      :+:    :+:   */
+/*   ft_cat.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/09 02:09:41 by lucerque          #+#    #+#             */
-/*   Updated: 2026/08/10 10:54:01 by lucerque         ###   ########.fr       */
+/*   Created: 2026/08/10 01:25:24 by lucerque          #+#    #+#             */
+/*   Updated: 2026/08/10 03:04:09 by lucerque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_display_file.h"
+#include "ft_cat.h"
 
-int	ft_put_error(const char *error_msg)
+bool	ft_cat(int fd)
 {
-	ssize_t	bytes_written;
-	size_t	len;
+	ssize_t	bytes_read;
+	char	buffer[BUFFER_SIZE];
 
-	len = 0;
-	while (error_msg[len] != '\0')
+	bytes_read = read(fd, buffer, BUFFER_SIZE);
+	while (bytes_read > 0)
 	{
-		len++;
+		if (write(STDOUT_FILENO, buffer, bytes_read) == -1)
+		{
+			return (false);
+		}
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
 	}
-	bytes_written = write(STDERR_FILENO, error_msg, len);
-	if (bytes_written == -1)
+	if (bytes_read == -1)
 	{
-		return (EOF);
+		return (false);
 	}
-	return (bytes_written);
+	return (true);
 }
