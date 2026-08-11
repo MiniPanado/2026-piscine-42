@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cat.h                                           :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/09 02:35:34 by lucerque          #+#    #+#             */
-/*   Updated: 2026/08/11 01:00:37 by lucerque         ###   ########.fr       */
+/*   Created: 2026/08/09 04:57:47 by lucerque          #+#    #+#             */
+/*   Updated: 2026/08/11 01:22:10 by lucerque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_CAT_H
+#include "ft_tail.h"
 
-# define FT_CAT_H
+size_t	ft_strlen(const char *str)
+{
+	size_t	i;
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <errno.h>
-# include <libgen.h>
-# include <string.h>
-# include <stdbool.h>
-
-# define BUFFER_SIZE 1024
-
-size_t	ft_strlen(const char *str);
-bool	ft_display_file(int fd);
-
-#endif
+	i = 0;
+	while (*(str + i))
+		i++;
+	return (i);
+}

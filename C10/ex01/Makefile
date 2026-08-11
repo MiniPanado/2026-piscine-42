@@ -3,7 +3,7 @@ PROGRAM = ft_cat
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS_NAME = main ft_strlen ft_cat
+SRCS_NAME = main ft_strlen ft_display_file
 SRCS = $(addsuffix .c, $(SRCS_NAME))
 
 OBJS = $(SRCS:.c=.o)

@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cat.h                                           :+:      :+:    :+:   */
+/*   ft_print_header.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/09 02:35:34 by lucerque          #+#    #+#             */
-/*   Updated: 2026/08/11 01:00:37 by lucerque         ###   ########.fr       */
+/*   Created: 2026/08/11 14:05:30 by lucerque          #+#    #+#             */
+/*   Updated: 2026/08/11 14:48:08 by lucerque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_CAT_H
+#include "ft_tail.h"
 
-# define FT_CAT_H
-
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <errno.h>
-# include <libgen.h>
-# include <string.h>
-# include <stdbool.h>
-
-# define BUFFER_SIZE 1024
-
-size_t	ft_strlen(const char *str);
-bool	ft_display_file(int fd);
-
-#endif
+void	ft_print_header(int count, const char *filename)
+{
+	if (count < 0)
+	{
+		return ;
+	}
+	if (count == 0)
+		write(1, "==> ", 4);
+	else
+		write(1, "\n==> ", 5);
+	write(1, filename, ft_strlen(filename));
+	write(1, " <==\n", 5);
+}

@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cat.h                                           :+:      :+:    :+:   */
+/*   ft_display_file.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/09 02:35:34 by lucerque          #+#    #+#             */
-/*   Updated: 2026/08/11 01:00:37 by lucerque         ###   ########.fr       */
+/*   Created: 2026/08/09 01:12:41 by lucerque          #+#    #+#             */
+/*   Updated: 2026/08/11 01:12:56 by lucerque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_CAT_H
+#include "ft_cat.h"
 
-# define FT_CAT_H
+bool	ft_display_file(int fd)
+{
+	char	buffer[BUFFER_SIZE];
+	ssize_t	num_of_bytes;
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <errno.h>
-# include <libgen.h>
-# include <string.h>
-# include <stdbool.h>
-
-# define BUFFER_SIZE 1024
-
-size_t	ft_strlen(const char *str);
-bool	ft_display_file(int fd);
-
-#endif
+	num_of_bytes = read(fd, buffer, sizeof(buffer));
+	while (num_of_bytes > 0)
+	{
+		if (write(STDOUT_FILENO, buffer, num_of_bytes) == -1)
+		{
+			return (false);
+		}
+		num_of_bytes = read(fd, buffer, sizeof(buffer));
+	}
+	if (num_of_bytes == -1)
+		return (false);
+	return (true);
+}

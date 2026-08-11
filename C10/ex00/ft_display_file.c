@@ -6,7 +6,7 @@
 /*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 01:12:41 by lucerque          #+#    #+#             */
-/*   Updated: 2026/08/10 10:52:30 by lucerque         ###   ########.fr       */
+/*   Updated: 2026/08/11 00:57:45 by lucerque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ bool	ft_display_file(int fd)
 	{
 		if (write(STDOUT_FILENO, buffer, num_of_bytes) == -1)
 		{
+			close(fd);
 			return (false);
 		}
 		num_of_bytes = read(fd, buffer, sizeof(buffer));

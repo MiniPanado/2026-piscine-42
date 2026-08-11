@@ -1,30 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cat.h                                           :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/09 02:35:34 by lucerque          #+#    #+#             */
-/*   Updated: 2026/08/11 01:00:37 by lucerque         ###   ########.fr       */
+/*   Created: 2026/08/11 01:43:41 by lucerque          #+#    #+#             */
+/*   Updated: 2026/08/11 14:10:05 by lucerque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_CAT_H
+#include "ft_tail.h"
 
-# define FT_CAT_H
+static bool	ft_is_space(char c)
+{
+	return (c == ' ' || (c >= 9 && c <= 13));
+}
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <errno.h>
-# include <libgen.h>
-# include <string.h>
-# include <stdbool.h>
+static bool	ft_is_digit(char c)
+{
+	return (c >= '0' && c <= '9');
+}
 
-# define BUFFER_SIZE 1024
+size_t	ft_atol(const char *str)
+{
+	size_t	i;
+	size_t	result;
 
-size_t	ft_strlen(const char *str);
-bool	ft_display_file(int fd);
-
-#endif
+	i = 0;
+	result = 0;
+	while (ft_is_space(str[i]))
+	{
+		i++;
+	}
+	while (ft_is_digit(str[i]))
+	{
+		result = result * 10 + (size_t)(str[i++] - '0');
+	}
+	return (result);
+}

@@ -1,34 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cat.c                                           :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/10 01:25:24 by lucerque          #+#    #+#             */
-/*   Updated: 2026/08/10 03:04:09 by lucerque         ###   ########.fr       */
+/*   Created: 2026/08/11 01:44:47 by lucerque          #+#    #+#             */
+/*   Updated: 2026/08/11 14:13:18 by lucerque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_cat.h"
+#include "ft_tail.h"
 
-bool	ft_cat(int fd)
+static bool	ft_is_digit(char c)
 {
-	ssize_t	bytes_read;
-	char	buffer[BUFFER_SIZE];
+	return (c >= '0' && c <= '9');
+}
 
-	bytes_read = read(fd, buffer, BUFFER_SIZE);
-	while (bytes_read > 0)
+bool	ft_str_is_numeric(const char *str)
+{
+	size_t	i;
+
+	if (str[0] == '\0')
+		return (false);
+	i = 0;
+	while (*(str + i))
 	{
-		if (write(STDOUT_FILENO, buffer, bytes_read) == -1)
+		if (ft_is_digit(*(str + i)) == false)
 		{
 			return (false);
 		}
-		bytes_read = read(fd, buffer, BUFFER_SIZE);
-	}
-	if (bytes_read == -1)
-	{
-		return (false);
+		i++;
 	}
 	return (true);
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	while (*s1 == *s2 && *s1)
+	{
+		s1++;
+		s2++;
+	}
+	return ((unsigned char)*s1 - (unsigned char)*s2);
 }

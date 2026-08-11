@@ -3,7 +3,7 @@ PROGRAM = ft_tail
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS_NAME = 
+SRCS_NAME = main ft_strlen ft_display_file ft_atol utils ft_print_header
 SRCS = $(addsuffix .c, $(SRCS_NAME))
 
 OBJS = $(SRCS:.c=.o)

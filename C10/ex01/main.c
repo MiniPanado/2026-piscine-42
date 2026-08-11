@@ -6,13 +6,13 @@
 /*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 04:26:13 by lucerque          #+#    #+#             */
-/*   Updated: 2026/08/10 11:04:48 by lucerque         ###   ########.fr       */
+/*   Updated: 2026/08/11 01:09:29 by lucerque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_cat.h"
 
-static void	ft_print_error(char *program_name, char *str, size_t len)
+static void	ft_print_error(const char *program_name, char *str, size_t len)
 {
 	const char	*err_msg = strerror(errno);
 
@@ -46,7 +46,7 @@ int	main(int argc, char **argv)
 			ft_print_error(program_name, *argv, program_len);
 			exit_code = EXIT_FAILURE;
 		}
-		if (fd != STDIN_FILENO)
+		if (fd > 0)
 			close(fd);
 		filename = *++argv;
 	}
