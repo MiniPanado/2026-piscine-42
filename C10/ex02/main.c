@@ -6,7 +6,7 @@
 /*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 04:26:13 by lucerque          #+#    #+#             */
-/*   Updated: 2026/08/11 14:47:21 by lucerque         ###   ########.fr       */
+/*   Updated: 2026/08/11 16:58:29 by lucerque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,7 @@ static int	ft_process_file(const char *prog_name, int *count,
 	{
 		if (fd > 0)
 			close(fd);
-		ft_print_read_error(prog_name, filename, ft_strlen(prog_name));
-		return (-42);
+		return (ft_print_read_error(prog_name, filename, ft_strlen(prog_name)));
 	}
 	(*count)++;
 	if (fd > 0)
@@ -83,9 +82,10 @@ int	main(int argc, char **argv)
 	const size_t	program_len = ft_strlen(prog_name);
 	int				i;
 	size_t			n;
-	int				count;
+	int				count[2];
 
-	count = -1;
+	count[0] = -1;
+	count[1] = EXIT_SUCCESS;
 	if (argc < 3 || ft_strcmp(argv[1], "-c") != 0
 		|| ft_str_is_numeric(argv[2]) == false)
 		return (ft_print_usage_error(prog_name, program_len));
@@ -93,15 +93,15 @@ int	main(int argc, char **argv)
 	if (n == 0)
 		return (EXIT_SUCCESS);
 	if (argc == 3)
-		return (ft_process_file(prog_name, &count, "-", n));
+		return (ft_process_file(prog_name, count, "-", n));
 	i = 3;
 	if (argc > 4)
-		count = 0;
+		count[0] = 0;
 	while (i < argc)
 	{
-		if (ft_process_file(prog_name, &count, argv[i], n) == -42)
-			return (EXIT_FAILURE);
+		if (ft_process_file(prog_name, count, argv[i], n) == EXIT_FAILURE)
+			count[1] = EXIT_FAILURE;
 		i++;
 	}
-	return (EXIT_SUCCESS);
+	return (count[1]);
 }
