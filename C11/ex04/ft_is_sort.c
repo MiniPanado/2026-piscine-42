@@ -6,29 +6,33 @@
 /*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/12 00:39:44 by lucerque          #+#    #+#             */
-/*   Updated: 2026/08/12 01:52:58 by lucerque         ###   ########.fr       */
+/*   Updated: 2026/08/13 00:29:03 by lucerque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdbool.h>
 #include <stddef.h>
 
 int	ft_is_sort(int *tab, int length, int (*f)(int, int))
 {
-	int	i;
+	int		i;
+	bool	is_sorted;
 
 	if (tab == NULL || f == NULL || length <= 1)
 	{
 		return (1);
 	}
-	i = 0;
-	while (i < (length - 1))
-	{
+	i = -1;
+	is_sorted = true;
+	while (++i < (length - 1))
 		if ((*f)(tab[i], tab[i + 1]) > 0)
-		{
+			is_sorted = false;
+	if (is_sorted)
+		return (1);
+	i = -1;
+	while (++i < (length - 1))
+		if ((*f)(tab[i], tab[i + 1]) < 0)
 			return (0);
-		}
-		i++;
-	}
 	return (1);
 }
 
@@ -72,7 +76,7 @@ static int	ft_nbrcmp(int n1, int n2)
 
 int	main(void)
 {
-	int	tab[] = {1, 2, 3, 4, 5, 1};
+	int	tab[] = {7, 7, 7, 7, 7, 6, 6, 6, 6, 5, 5, 4, 3, 2, 1, 0, -42};
 	int	size = sizeof(tab) / sizeof(tab[0]);
 
 	ft_putstr("----------------------------\nOg: ");

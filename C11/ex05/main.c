@@ -6,7 +6,7 @@
 /*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/12 01:54:16 by lucerque          #+#    #+#             */
-/*   Updated: 2026/08/12 03:17:50 by lucerque         ###   ########.fr       */
+/*   Updated: 2026/08/13 00:10:07 by lucerque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static bool	ft_is_op(char *str, char ops[5])
 {
 	int	i;
 
-	if (str[1] != '\0')
+	if (str[0] == '\0' || str[1] != '\0')
 		return (false);
 	i = 0;
 	while (i < 5)
