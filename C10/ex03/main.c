@@ -6,38 +6,57 @@
 /*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 17:47:23 by lucerque          #+#    #+#             */
-/*   Updated: 2026/08/11 18:29:18 by lucerque         ###   ########.fr       */
+/*   Updated: 2026/08/13 02:15:46 by lucerque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_hexdump.h"
+#include "hexdump.h"
 
-int main(int argc, char **argv)
+static void	ft_init_hd(t_hexdump *hd)
 {
-	int		i;
-	bool	available_option;
-	size_t	offset;
-	int		exit_code;
+	hd->offset = 0;
+	hd->buf_size = 0;
+	hd->option_c = false;
+	hd->has_prev = false;
+	hd->same_printed = false;
+}
 
-	if (argc < 2 || (argc == 2 && ft_strcmp("-C", argv[1]) == 0))
+static void	ft_flush_buffer(char *buffer, t_hexdump *hd)
+{
+	if (hd->buf_size > 0)
 	{
-		return (EXIT_FAILURE);
+		ft_print_line(buffer, hd->buf_size, hd);
+		hd->offset += hd->buf_size;
 	}
-	exit_code = EXIT_SUCCESS;
+	if (hd->offset > 0 || hd->buf_size > 0)
+	{
+		ft_print_offset(hd->offset, hd->option_c);
+		write(1, "\n", 1);
+	}
+}
+
+int	main(int argc, char **argv)
+{
+	int			i;
+	char		buffer[16];
+	int			exit_code;
+	t_hexdump	hd;
+
+	ft_init_hd(&hd);
 	i = 1;
-	offset = 0;
-	available_option = false;
-	if (ft_strcmp("-C", argv[1]))
+	exit_code = EXIT_SUCCESS;
+	if (argc > 1 && ft_strcmp("-C", argv[1]) == 0)
 	{
+		hd.option_c = true;
 		i++;
-		available_option = true;
 	}
+	if (i == argc)
+		ft_read_fd(0, buffer, &hd);
 	while (i < argc)
 	{
-		exit_code = ft_print_file(argv[i], available_option, &offset);
-		i++;
+		if (!ft_process_file(argv[i++], buffer, &hd))
+			exit_code = EXIT_FAILURE;
 	}
-	ft_print_offset(offset);
-	write(1, "\n", 1);
+	ft_flush_buffer(buffer, &hd);
 	return (exit_code);
 }

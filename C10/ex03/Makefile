@@ -5,7 +5,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 RM = rm -f
 
-SRCS_PROGRAM = main
+SRCS_PROGRAM = main ft_print_file ft_print_offset ft_print_hex_section ft_print_ascii utils
 SRCS = $(addsuffix .c, $(SRCS_PROGRAM))
 
 OBJS = $(SRCS:.c=.o)
