@@ -6,7 +6,7 @@
 /*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/05 19:45:11 by lucerque          #+#    #+#             */
-/*   Updated: 2026/08/05 20:18:48 by lucerque         ###   ########.fr       */
+/*   Updated: 2026/08/06 21:03:13 by lucerque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	*ft_itoa_base(int num, char *str, const char *base, size_t base_len)
 	i = 0;
 	if (num == 0)
 	{
-		str[i++] = '0';
+		str[i++] = base[0];
 		str[i] = '\0';
 		return (str);
 	}

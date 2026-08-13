@@ -3,7 +3,7 @@ NAME = libft.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 CPPFLAGS = -Iincludes
-AR = ar rc
+AR = ar rcs
 RM = rm -f
 
 SRCS_DIR = srcs
@@ -27,3 +27,5 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re

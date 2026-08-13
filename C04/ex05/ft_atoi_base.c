@@ -6,7 +6,7 @@
 /*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/30 02:14:19 by lucerque          #+#    #+#             */
-/*   Updated: 2026/07/31 01:49:57 by lucerque         ###   ########.fr       */
+/*   Updated: 2026/07/31 19:56:01 by lucerque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static bool	ft_base_is_valid(char *base)
 	int		i;
 	short	freq[ASCII_SIZE];
 
-	if (!base || *base == '\0' || base[1] == '\0')
+	if (*base == '\0' || base[1] == '\0')
 		return (false);
 	i = 0;
 	while (i < ASCII_SIZE)

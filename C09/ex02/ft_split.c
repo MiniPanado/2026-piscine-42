@@ -6,11 +6,11 @@
 /*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 00:52:55 by lucerque          #+#    #+#             */
-/*   Updated: 2026/08/09 00:53:01 by lucerque         ###   ########.fr       */
+/*   Updated: 2026/08/09 19:04:17 by lucerque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//MEMORY LEAK IN CASE OF MALLOC FAIL BECAUSE WE CAN'T USE FREE();
+/* memory leak possible on malloc failure, free() is not allowed here */
 
 #include <stdlib.h>
 #include <stdbool.h>

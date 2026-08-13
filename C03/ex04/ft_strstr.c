@@ -6,7 +6,7 @@
 /*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/30 01:15:55 by lucerque          #+#    #+#             */
-/*   Updated: 2026/07/30 01:35:49 by lucerque         ###   ########.fr       */
+/*   Updated: 2026/07/30 20:43:27 by lucerque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ char	*ft_strstr(char *str, char *to_find)
 	unsigned int	i;
 	unsigned int	j;
 
+	if (ft_strlen(str) < ft_strlen(to_find))
+		return ((char *)0);
 	if (ft_strlen(to_find) == 0)
 		return (str);
 	i = 0;

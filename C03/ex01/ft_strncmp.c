@@ -6,7 +6,7 @@
 /*   By: lucerque <lucerque@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/30 01:15:24 by lucerque          #+#    #+#             */
-/*   Updated: 2026/07/30 01:15:28 by lucerque         ###   ########.fr       */
+/*   Updated: 2026/07/30 20:42:28 by lucerque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_strncmp(char *s1, char *s2, unsigned int n)
 		return (0);
 	}
 	i = 0;
-	while (s1[i] != '\0' && s1[i] == s2[i] && i < (n - 1))
+	while (i < (n - 1) && s1[i] != '\0' && s1[i] == s2[i])
 	{
 		i++;
 	}
@@ -29,5 +29,5 @@ int	ft_strncmp(char *s1, char *s2, unsigned int n)
 /*#include <stdio.h>
 int     main(void)
 {
-        printf("%d\n", ft_strcmp("abc", "abe", 2));
+        printf("%d\n", ft_strncmp("abc", "abe", 2));
 }*/
