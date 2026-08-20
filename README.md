@@ -107,6 +107,32 @@ BSQ is the **C Piscine's final project**: given a map of empty and obstacle cell
 
 The solution is split across focused files — [`parsing`](BSQ/parsing.c), [`validation`](BSQ/validation.c), [`algorithm`](BSQ/algorithm.c), [`memory`](BSQ/memory.c), [`output`](BSQ/output.c) — rather than one large `main.c`. The core is a row/column dynamic-programming table: the standard approach for this class of "largest square in a grid" problem.
 
+### Running it locally
+
+```bash
+cd BSQ
+make
+./bsq maps/map1.txt
+```
+
+Output:
+
+```
+xx...
+xx...
+..o..
+.....
+.....
+```
+
+It also reads from `stdin` when no file is given:
+
+```bash
+./bsq < maps/map1.txt
+```
+
+[`BSQ/maps/`](BSQ/maps) has three ready-to-run examples: `map1.txt` (5×5, one obstacle — the run above), `map2.txt` (12×20, scattered obstacles), and `map3.txt` (a square walled in flush against the top edge, to exercise that boundary case specifically).
+
 ## A few things this Piscine made clear
 
 - **A correct solution in the wrong folder scores the same as no solution.** See rush00, above.
