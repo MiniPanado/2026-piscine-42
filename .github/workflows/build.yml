@@ -1,0 +1,40 @@
+name: build-check
+on:
+  push:
+  pull_request:
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Build BSQ
+        working-directory: BSQ
+        run: make
+      - name: Compile each exercise individually
+        shell: bash
+        run: |
+          set -uo pipefail
+          failed=0
+          # C12/ex08, ex15, ex16 and ex17 don't carry their own copy of
+          # ft_list.h, unlike every other C12 exercise. C08/ex04 and ex05
+          # include ft_stock_str.h, which currently sits at the repo root
+          # instead of inside C08/. Both are pre-existing gaps (see
+          # README), excluded here on purpose rather than swallowed silently.
+          while IFS= read -r -d '' f; do
+            echo "==> Checking $f"
+            if ! cc -Wall -Wextra -Werror -c "$f" -o /dev/null; then
+              echo "❌ Error: $f"
+              failed=1
+            fi
+          done < <(
+            find . \( \
+                -path './subjects' -o \
+                -path './C12/ex08' -o \
+                -path './C12/ex15' -o \
+                -path './C12/ex16' -o \
+                -path './C12/ex17' -o \
+                -path './C08/ex04' -o \
+                -path './C08/ex05' \
+              \) -prune -o -name '*.c' -print0
+          )
+          exit "$failed"
