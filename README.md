@@ -133,6 +133,16 @@ It also reads from `stdin` when no file is given:
 
 [`BSQ/maps/`](BSQ/maps) has three ready-to-run examples: `map1.txt` (5×5, one obstacle — the run above), `map2.txt` (12×20, scattered obstacles), and `map3.txt` (a square walled in flush against the top edge, to exercise that boundary case specifically).
 
+Want more maps? [`BSQ/gen_map.sh`](BSQ/gen_map.sh) generates a random one in the same format:
+
+```bash
+./gen_map.sh <width> <height> <density 0-100> [seed] > map.txt
+
+# or feed it straight into bsq:
+./gen_map.sh 20 15 25 | ./bsq
+```
+`density` is a plain percentage (0–100), independent of map size — the [Perl generator in the subject appendix](subjects/BSQ/bsq.pdf) ties its density to the map's height instead, so the same value there produces a different actual obstacle ratio depending on `height`. Passing a `seed` regenerates the exact same map, which is useful for re-testing a specific case.
+
 ## A few things this Piscine made clear
 
 - **A correct solution in the wrong folder scores the same as no solution.** See rush00, above.
